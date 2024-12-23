@@ -1,0 +1,63 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/V2/(S(ajyasbssl2ppnlalpp1pgam4))/OData/OData.svc/$metadata">
+        <edmx:Include Namespace="ODataDemo" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="ODataDemo.Supplier">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>SuppliersTableNameColumnText}" />
+                            <PropertyValue Property="Value" Path="ID" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ODataDemo.Supplier/ID">
+                <Annotation Term="Common.Text" Path="Name" />
+            </Annotations>
+
+            <Annotations Target="ODataDemo.Product">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>ProductNameColumnTitle}" />
+                            <PropertyValue Property="Value" Path="Name" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>ProductDescriptionColumnTitle}" />
+                            <PropertyValue Property="Value" Path="Description" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>ProductReleaseColumnTitle}" />
+                            <PropertyValue Property="Value" Path="ReleaseDate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>ProductDiscontinuedColumnTitle}" />
+                            <PropertyValue Property="Value" Path="DiscontinuedDate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>ProductPriceColumnTitle}" />
+                            <PropertyValue Property="Value" Path="Price" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{i18n>ProductRatingColumnTitle}" />
+                            <PropertyValue Property="Value" Path="Rating" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+         
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

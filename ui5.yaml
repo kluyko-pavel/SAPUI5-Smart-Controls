@@ -1,0 +1,18 @@
+specVersion: "3.2"
+metadata:
+    name: pavel.kliuiko
+type: application
+server:
+    customMiddleware:
+        - name: fiori-tools-proxy
+          afterMiddleware: compression
+          configuration:
+              ignoreCertError: false
+              backend:
+                  - path: /V2
+                    url: https://services.odata.org
+              ui5:
+                  path:
+                      - /resources
+                      - /test-resources
+                  url: https://openui5.hana.ondemand.com

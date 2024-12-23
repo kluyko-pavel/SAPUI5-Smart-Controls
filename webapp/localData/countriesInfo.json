@@ -1,0 +1,28 @@
+{
+	"countries": [
+		{
+			"countryId": "1",
+			"countryName": "USA",
+			"description": "Unated States of America",
+			"capital": "Washington"
+		},
+		{
+			"countryId": "2",
+			"countryName": "Canada",
+			"description": "Country in North America",
+			"capital": "Ottawa"
+		},
+		{
+			"countryId": "3",
+			"countryName": "Brazil",
+			"description": "Country in South America",
+			"capital": "Brasilia"
+		},
+		{
+			"countryId": "4",
+			"countryName": "Germany",
+			"description": "Country in Europe",
+			"capital": "Berlin"
+		}
+	]
+}

@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:core="sap.ui.core">
+	<ValueHelpDialog 
+		id="cityFilterValueHelpDialog"
+		title="{i18n>CityValueHelpDialogTitle}"
+		ok="onCityValueHelpOk"
+		cancel="onCityValueHelpCancel"
+		afterClose="onAfterCityValueHelpClose"
+		key="cityId"
+		descriptionKey="cityName">
+	</ValueHelpDialog>
+</core:FragmentDefinition>

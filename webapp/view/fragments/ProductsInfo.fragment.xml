@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns="sap.m"
+>
+	<smartTable:SmartTable
+		id="productsSmartTable"
+		visible="{stateModel>/displayMode}"
+		tableType="ResponsiveTable"
+		entitySet="Products"
+		useVariantManagement="false"
+		header="{i18n>ProductsTableTitle}"
+		enableAutoBinding="true"
+		demandPopin="true"
+	/>
+	<smartTable:SmartTable
+		id="editProductsSmartTable"
+		visible="{= ${stateModel>/editMode}}"
+		tableType="ResponsiveTable"
+		entitySet="Products"
+		useVariantManagement="false"
+		useTablePersonalisation="false"
+		header="{i18n>ProductsTableTitle}"
+		enableExport="false"
+		enableAutoBinding="true"
+		demandPopin="true"
+	>
+		<smartTable:customToolbar>
+			<Toolbar>
+				<ToolbarSpacer />
+				<HBox>
+					<Button
+						id="productsDeleteButton"
+						class="sapUiTinyMarginEnd"
+						enabled="{stateModel>/productsDeleteBtn}"
+						text="{i18n>DeleteBtnText}"
+						press="onDeleteSelectedProducts"
+						type="Transparent"
+					/>
+					<Button
+						id="productsCreateButton"
+						text="{i18n>CreateBtnText}"
+						press="onOpenNewProductDialogPress"
+						type="Transparent"
+					/>
+				</HBox>
+			</Toolbar>
+		</smartTable:customToolbar>
+		<Table
+			id="editProductsTable"
+			selectionChange="onCheckSelectedProducts"
+			mode="MultiSelect"
+		>
+			<columns>
+				<Column>
+					<customData>
+						<core:CustomData
+							key="p13nData"
+							value='\{ "columnIndex": 6}'
+						/>
+					</customData>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Button
+							icon="sap-icon://edit"
+							type="Transparent"
+							press="onOpenEditProductDialogPress"
+						/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</smartTable:SmartTable>
+</core:FragmentDefinition>

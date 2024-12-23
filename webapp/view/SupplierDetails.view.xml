@@ -1,0 +1,157 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	controllerName="pavel.kliuiko.controller.SupplierDetails"
+>
+	<ObjectPageLayout
+		id="supplierDetailsPage"
+		showFooter="true"
+		upperCaseAnchorBar="false"
+	>
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title
+						text="{Name}"
+						wrapping="true"
+					/>
+				</expandedHeading>
+				<snappedHeading>
+					<m:Title
+						text="{Name}"
+						wrapping="true"
+					/>
+				</snappedHeading>
+				<actions>
+					<m:Button
+						visible="{stateModel>/displayMode}"
+						text="{i18n>EditBtnText}"
+						type="Emphasized"
+						press="onEditModePress"
+					/>
+					<m:Button
+						visible="{stateModel>/displayMode}"
+						text="{i18n>DeleteBtnText}"
+						press="onDeleteCurrentSupplier"
+					/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<layout:HorizontalLayout allowWrapping="true">
+				<layout:VerticalLayout class="sapUiMediumMarginEnd">
+					<m:HBox>
+						<m:Label
+							text="{i18n>SupplierCountryLabel}"
+							showColon="true"
+							design="Bold"
+							class="sapUiTinyMarginEnd"
+						/>
+						<m:ObjectAttribute text="{Address/Country}"/>
+					</m:HBox>
+					<m:HBox>
+						<m:Label
+							text="{i18n>SupplierStateLabel}"
+							showColon="true"
+							design="Bold"
+							class="sapUiTinyMarginEnd"
+						/>
+						<m:ObjectAttribute text= "{Address/State}"/>
+					</m:HBox>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiMediumMarginEnd">
+					<m:HBox>
+						<m:Label
+							text="{i18n>SupplierCityLabel}"
+							showColon="true"
+							design="Bold"
+							class="sapUiTinyMarginEnd"
+						/>
+						<m:ObjectAttribute text= "{Address/City}" />
+					</m:HBox>
+					<m:HBox>
+						<m:Label
+							text="{i18n>SupplierStreetLabel}"
+							showColon="true"
+							design="Bold"
+							class="sapUiTinyMarginEnd"
+						/>
+						<m:ObjectAttribute text= "{Address/Street}" />
+					</m:HBox>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout>
+					<m:HBox>
+						<m:Label
+							text="{i18n>SupplierZipCodeLabel}"
+							showColon="true"
+							design="Bold"
+							class="sapUiTinyMarginEnd"
+						/>
+						<m:ObjectAttribute text= "{Address/ZipCode}" />
+					</m:HBox>
+				</layout:VerticalLayout>
+			</layout:HorizontalLayout>
+		</headerContent>
+		<sections>
+			<ObjectPageSection
+				titleUppercase="false"
+				title="{i18n>NewSupplierInfoTitle}"
+			>
+				<subSections>
+					<ObjectPageSubSection>
+						<core:Fragment fragmentName="pavel.kliuiko.view.fragments.GeneralSupplierInfo" />
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection
+				visible="{= ${stateModel>/editMode} || ${stateModel>/displayMode}}"
+				titleUppercase="false"
+				title="{i18n>ProductsInfoTitle}"
+			>
+				<subSections>
+					<ObjectPageSubSection>
+						<core:Fragment fragmentName="pavel.kliuiko.view.fragments.ProductsInfo" />
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection
+				visible="{= ${stateModel>/editMode} || ${stateModel>/displayMode}}"
+				titleUppercase="false"
+				title="{i18n>CountriesSectionTitle}"
+			>
+				<subSections>
+					<ObjectPageSubSection>
+						<core:Fragment fragmentName="pavel.kliuiko.view.fragments.CountriesSection" />
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<m:OverflowToolbar  visible="{= !${stateModel>/displayMode}}">
+				<m:Button
+					icon="sap-icon://message-error"
+					text="{= ${messages>/}.length }"
+					visible="{= !!${messages>/}.length &amp;&amp; ${stateModel>/supplierErrValidateBtn}}"
+					type="Reject"
+					press="onValidationMessagePopoverOpen"
+				/>
+				<m:ToolbarSpacer />
+				<m:Button
+					type="Emphasized"
+					press="onSaveSupplierPress('newSupplierInputs')"
+					text="{i18n>SaveBtnText}"
+				/>
+				<m:Button
+					id="cancelEditModeBtn"
+					press="onDiscardPopoverOpen"
+					text="{i18n>CancelBtnText}"
+				/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>

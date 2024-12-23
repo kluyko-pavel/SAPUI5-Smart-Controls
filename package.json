@@ -1,0 +1,16 @@
+{
+	"name": "3.-appbase",
+	"version": "1.0.0",
+	"description": "",
+	"main": "Component.js",
+	"scripts": {
+		"integrationTest": "ui5 serve --open test/integration/opaTests.qunit.html",
+		"start": "ui5 serve --open index.html"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@sap/ux-ui5-tooling": "^1.12.0",
+		"@ui5/cli": "^3.8.0"
+	}
+}

@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.ui.comp.valuehelpdialog"
+	xmlns:core="sap.ui.core">
+	<ValueHelpDialog 
+		id="cityEditValueHelpDialog"
+		supportMultiselect='false'
+		ok="onCitySelect"
+		title="{i18n>CityValueHelpDialogTitle}"
+		cancel="onCityValueHelpCancel"
+		afterClose="onAfterCityValueHelpClose"
+		key="cityId"
+		descriptionKey="cityName">
+	</ValueHelpDialog>
+</core:FragmentDefinition>

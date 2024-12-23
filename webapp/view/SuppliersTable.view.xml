@@ -1,0 +1,212 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	controllerName="pavel.kliuiko.controller.SuppliersTable"
+>
+	<f:DynamicPage
+		id="suppliersTablePage"
+		fitContent="true"
+	>
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>SuppliersTableViewTitle}" />
+				</f:heading>
+				<f:actions>
+					<Button
+						id="countriesGettingBtn"
+						text="{i18n>GetCountriesBtn}"
+						type="Emphasized"
+						press="onGetCountriesDataPress"
+					/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<smartFilterBar:SmartFilterBar
+					id="suppliersSmartFilterBar"
+					entitySet="Suppliers"
+					liveMode="true"
+					showClearOnFB="true"
+					showFilterConfiguration="false"
+					useToolbar="false"
+					filterChange="onSuppliersSearch"
+					clear="onFiltersClear"
+				>
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration
+							key="Name"
+							label="{i18n>SupplierSearchFieldLabel}"
+							index="1"
+							visibleInAdvancedArea="true"
+						>
+							<smartFilterBar:customControl>
+								<SearchField id="idSupplierSearchField" />
+							</smartFilterBar:customControl>
+						</smartFilterBar:ControlConfiguration>
+						<smartFilterBar:ControlConfiguration
+							key="Country"
+							label="{i18n>SupplierCountryInputLabel}"
+							visibleInAdvancedArea="true"
+							index="2"
+						>
+							<smartFilterBar:customControl>
+								<MultiComboBox items="{
+									path: 'appViewModel>/suppliersInfo/countries',
+									templateShareable: false
+								}">
+									<core:Item text="{appViewModel>countryName}" />
+								</MultiComboBox>
+							</smartFilterBar:customControl>
+						</smartFilterBar:ControlConfiguration>
+						<smartFilterBar:ControlConfiguration
+							key="City"
+							label="{i18n>SupplierCityInputLabel}"
+							visibleInAdvancedArea="true"
+							index="3"
+						>
+							<smartFilterBar:customControl>
+								<MultiInput
+									id="cityMultiInput"
+									tokenUpdate="onMultiInputUpdate"
+									suggestionItems="{
+										path: 'appViewModel>/suppliersInfo/cities'
+									}"
+									valueHelpRequest="onCityFilterValueHelpOpen"
+								>
+									<core:Item
+										key="{appViewModel>cityId}"
+										text="{appViewModel>cityName}"
+									/>
+								</MultiInput>
+							</smartFilterBar:customControl>
+						</smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+				</smartFilterBar:SmartFilterBar>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable
+				id="suppliersSmartTable"
+				smartFilterId="suppliersSmartFilterBar"
+				tableType="ResponsiveTable"
+				entitySet="Suppliers"
+				useVariantManagement="false"
+				header="{i18n>SuppliersTableTitle}"
+				enableAutoBinding="true"
+				demandPopin="true"
+			>
+				<smartTable:customToolbar>
+					<Toolbar>
+						<ToolbarSpacer />
+						<HBox>
+							<Button
+								id="suppliersDeleteButton"
+								class="sapUiTinyMarginEnd"
+								enabled="{stateModel>/supplierDeleteBtn}"
+								text="{i18n>DeleteBtnText}"
+								press="onDeleteSelectedSuppliers"
+								type="Transparent"
+							/>
+							<Button
+								id="suppliersCreateButton"
+								text="{i18n>CreateBtnText}"
+								press="onCreateNewSupplierPress"
+								type="Transparent"
+							/>
+						</HBox>
+					</Toolbar>
+				</smartTable:customToolbar>
+				<Table
+					id="idSuppliersTable"
+					selectionChange="onCheckSelectedSuppliers"
+					mode="MultiSelect"
+				>
+					<columns>
+						<Column>
+							<customData>
+								<core:CustomData
+									key="p13nData"
+									value='\{"columnKey": "State", "leadingProperty": "Address", "columnIndex": 2}'
+								/>
+							</customData>
+							<Label text="{i18n>SuppliersTableStateColumnText}" />
+						</Column>
+						<Column>
+							<customData>
+								<core:CustomData
+									key="p13nData"
+									value='\{"columnKey": "Country", "leadingProperty": "Address", "columnIndex": 3}'
+								/>
+							</customData>
+							<Label text="{i18n>SuppliersTableCountryColumnText}" />
+						</Column>
+						<Column>
+							<customData>
+								<core:CustomData
+									key="p13nData"
+									value='\{"columnKey": "City", "leadingProperty": "Address", "columnIndex": 4}'
+								/>
+							</customData>
+							<Label text="{i18n>SuppliersTableCityColumnText}" />
+						</Column>
+						<Column>
+							<customData>
+								<core:CustomData
+									key="p13nData"
+									value='\{"columnKey": "Street", "leadingProperty": "Address", "columnIndex": 5}'
+								/>
+							</customData>
+							<Label text="{i18n>SuppliersTableStreetColumnText}" />
+						</Column>
+						<Column hAlign="End">
+							<customData>
+								<core:CustomData
+									key="p13nData"
+									value='\{"columnKey": "ZipCode", "leadingProperty": "Address", 
+									"columnIndex": 6}'
+								/>
+							</customData>
+							<Label text="{i18n>SuppliersTableCodeColumnText}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem
+							type="Navigation"
+							press="onSupplierTablePress"
+						>
+							<cells>
+								<Text
+									text="{Address/State}"
+									tooltip="{Address/State}"
+									maxLines="1"
+								/>
+								<Text
+									text="{Address/Country}"
+									tooltip="{Address/Country}"
+									maxLines="1"
+								/>
+								<Text
+									text="{Address/City}"
+									tooltip="{Address/City}"
+									maxLines="1"
+								/>
+								<Text
+									text="{Address/Street}"
+									tooltip="{Address/Street}"
+									maxLines="1"
+								/>
+								<ObjectNumber number="{Address/ZipCode}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

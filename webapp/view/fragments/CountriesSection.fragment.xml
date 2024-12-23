@@ -1,0 +1,51 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+>
+	<Table
+		sticky="ColumnHeaders"
+		items="{countriesModel>/countries}"
+		width="auto"
+	>
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{i18n>CountriesTableTitle}" />
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="{i18n>CountryNameColumnTitle}" />
+			</Column>
+			<Column
+				minScreenWidth="Small"
+				demandPopin="true"
+			>
+				<Text text="{i18n>CountryDescriptionColumnTitle}" />
+			</Column>
+			<Column
+				minScreenWidth="Large"
+				demandPopin="true"
+				hAlign="End"
+			>
+				<Text text="{i18n>CountryCapitalColumnTitle}" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier title="{countriesModel>countryName}" />
+					<Text
+						text="{countriesModel>description}"
+						tooltip="{countriesModel>description}"
+						maxLines="1"
+					/>
+					<Text
+						text="{countriesModel>capital}"
+						tooltip="{countriesModel>capital}"
+						maxLines="1"
+					/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

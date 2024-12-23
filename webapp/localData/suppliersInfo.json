@@ -1,0 +1,44 @@
+{
+	"suppliersInfo": {
+		"countries": [
+			{
+				"countryId": "1",
+				"countryName": "USA"
+			},
+			{
+				"countryId": "2",
+				"countryName": "Canada"
+			},
+			{
+				"countryId": "3",
+				"countryName": "Brazil"
+			},
+			{
+				"countryId": "4",
+				"countryName": "Germany"
+			}
+		],
+		"cities": [
+			{
+				"cityId": "1",
+				"cityName": "Redmond"
+			},
+			{
+				"cityId": "2",
+				"cityName": "Sammamish"
+			},
+			{
+				"cityId": "3",
+				"cityName": "Berlin"
+			},
+			{
+				"cityId": "4",
+				"cityName": "Ottawa"
+			},
+			{
+				"cityId": "5",
+				"cityName": "Brazilia"
+			}
+		]
+	}
+}
